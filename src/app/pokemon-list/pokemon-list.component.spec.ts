@@ -6,20 +6,13 @@ import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { getPokemonByNameMock } from '../mock/pokemon-list/getPokemonByName';
 import { getPokemonListMock } from '../mock/pokemon-list/getPokemonList';
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-
-@Component({
-  selector: 'app-pokemon-card',
-  template: '<div></div>',
-})
-export class PokemonCardMock {
-  @Input(`selectedPokemon`) selectedPokemon: any = null;
-}
+import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
+import { MockComponent } from 'ng-mocks';
 
 const mockService = {
   getPokemonList: vi.fn().mockReturnValue(of(getPokemonListMock)),
@@ -38,7 +31,7 @@ describe('PokemonListComponent', () => {
         ReactiveFormsModule,
         MatInputModule,
         MatButtonModule,
-        PokemonCardMock,
+        MockComponent(PokemonCardComponent),
       ],
       providers: [
         {
@@ -125,7 +118,9 @@ describe('PokemonListComponent', () => {
     fixture.detectChanges();
 
     const cardMock = fixture.debugElement.query(By.css('app-pokemon-card'));
-    const cardComponent = cardMock.componentInstance as PokemonCardMock;
+    const cardComponent = cardMock.componentInstance;
+
+    console.log(cardComponent.loading);
 
     expect(cardComponent.selectedPokemon).toBe(component.selectedPokemon());
   });
