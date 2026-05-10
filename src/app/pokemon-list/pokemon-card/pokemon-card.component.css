@@ -1,0 +1,52 @@
+
+.ghost-chip {
+    background-color: var(--color-purple-800);
+}
+
+.dark-chip {
+    background-color: var(--color-zinc-800);
+}
+
+.normal-chip {
+    background-color: var(--color-zinc-200);
+    color: black;
+}
+
+.grass-chip {
+    background-color: var(--color-green-600);
+}
+
+.poison-chip {
+    background-color: var(--color-purple-700);
+}
+
+.fire-chip {
+    background-color: var(--color-orange-600);
+}
+
+.flying-chip {
+    background-color: var(--color-purple-300);
+    color: black;
+}
+
+.water-chip {
+    background-color: var(--color-blue-600);
+}
+
+.bug-chip {
+    background-color: var(--color-lime-500);
+    color: black;
+}
+
+.psychic-chip{
+    background-color: var(--color-pink-500);
+}
+
+.ice-chip{
+    background-color: var(--color-blue-300);
+    color: black;
+}
+
+.dragon-chip{
+    background-color: var(--color-purple-400);
+}

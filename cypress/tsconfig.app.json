@@ -7,8 +7,10 @@
   },
   "include": [
     "src/**/*.ts",
+    "cypress/support/component.ts"
   ],
   "exclude": [
-    "src/**/*.spec.ts"
+    "src/**/*.spec.ts",
+    "cypress/e2e"
   ]
 }

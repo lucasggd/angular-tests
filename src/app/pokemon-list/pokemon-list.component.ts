@@ -7,6 +7,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { PokemonNamePipe } from '../shared/pipes/pokemon-name-pipe';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -14,9 +15,9 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     MatSelectModule,
     ReactiveFormsModule,
-    PokemonNamePipe,
     MatInputModule,
     MatButtonModule,
+    PokemonCardComponent,
   ],
   templateUrl: './pokemon-list.component.html',
   styleUrl: './pokemon-list.component.css',

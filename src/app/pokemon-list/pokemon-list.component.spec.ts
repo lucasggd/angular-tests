@@ -6,6 +6,20 @@ import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { getPokemonByNameMock } from '../mock/pokemon-list/getPokemonByName';
 import { getPokemonListMock } from '../mock/pokemon-list/getPokemonList';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+
+@Component({
+  selector: 'app-pokemon-card',
+  template: '<div></div>',
+})
+export class PokemonCardMock {
+  @Input(`selectedPokemon`) selectedPokemon: any = null;
+}
 
 const mockService = {
   getPokemonList: vi.fn().mockReturnValue(of(getPokemonListMock)),
@@ -18,7 +32,14 @@ describe('PokemonListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PokemonListComponent],
+      imports: [
+        CommonModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        PokemonCardMock,
+      ],
       providers: [
         {
           provide: PokemonListService,
@@ -33,21 +54,6 @@ describe('PokemonListComponent', () => {
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
-
-  function updateSelectedPokemon(): void {
-    component.getPokemonByName$.next(getPokemonByNameMock.name);
-
-    fixture.detectChanges();
-    component.getPokemonByName$.next(getPokemonByNameMock.name);
-
-    fixture.detectChanges();
-    component.getPokemonByName$.next(getPokemonByNameMock.name);
-
-    fixture.detectChanges();
-    component.getPokemonByName$.next(getPokemonByNameMock.name);
-
-    fixture.detectChanges();
-  }
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -90,38 +96,6 @@ describe('PokemonListComponent', () => {
     );
   });
 
-  it('Should create card of selected pokemon', () => {
-    updateSelectedPokemon();
-
-    const pokemonCardList = fixture.debugElement.query(By.css('[data-testId="pokemon-list"]'));
-    expect(pokemonCardList).toBeTruthy();
-  });
-
-  it('Should create card pokemon img', () => {
-    updateSelectedPokemon();
-
-    const imgPokemon = fixture.debugElement.query(By.css('img')).nativeElement as HTMLImageElement;
-    expect(imgPokemon.getAttribute('src')).toBe(getPokemonByNameMock.sprites.front_default);
-  });
-
-  it('Should create card pokemon name', () => {
-    updateSelectedPokemon();
-
-    const pokemonName = fixture.debugElement.query(By.css('[data-testId="pokemon-name"]'))
-      .nativeElement as HTMLElement;
-    expect(pokemonName.textContent.toLowerCase()).toBe(getPokemonByNameMock.name.toLowerCase());
-  });
-
-  it('Should create card pokemon type chip list', () => {
-    updateSelectedPokemon();
-
-    getPokemonByNameMock.types.forEach((item) => {
-      const typeChip = fixture.debugElement.query(By.css('.' + item.type.name + '-chip'))
-        .nativeElement as HTMLElement;
-      expect(typeChip.textContent.toLowerCase().trim()).toBe(item.type.name.toLowerCase());
-    });
-  });
-
   it('Test if input is working', () => {
     const inputValue = 'gengar';
     const input = fixture.debugElement.query(By.css('input')).nativeElement as HTMLInputElement;
@@ -143,5 +117,16 @@ describe('PokemonListComponent', () => {
 
     expect(mockService.getPokemonByName).toHaveBeenCalledTimes(1);
     expect(mockService.getPokemonByName).toHaveBeenCalledWith(inputValue);
+  });
+
+  it('Validate pokemon-card input', () => {
+    component.selectedPokemonControl.setValue('gengar');
+    component.selected();
+    fixture.detectChanges();
+
+    const cardMock = fixture.debugElement.query(By.css('app-pokemon-card'));
+    const cardComponent = cardMock.componentInstance as PokemonCardMock;
+
+    expect(cardComponent.selectedPokemon).toBe(component.selectedPokemon());
   });
 });
