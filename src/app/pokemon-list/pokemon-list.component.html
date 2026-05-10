@@ -1,0 +1,47 @@
+<div class="content flex flex-col">
+  @if (selectedPokemon()) {
+    <ul data-testId="pokemon-list">
+      <li class="w-120 h-24 bg-zinc-500 flex">
+        <div class="w-24 h-full bg-zinc-400 shadow-md flex justify-center items-center">
+          <img
+            class="h-full w-auto"
+            [src]="selectedPokemon().sprites.front_default"
+            [alt]="selectedPokemon().name + ' sprite'"
+          />
+        </div>
+        <div class="flex-1 flex flex-col justify-center ml-4">
+          <div>
+            <span data-testId="pokemon-name" class="font-bold text-2xl">{{
+              selectedPokemon().name | pokemonNamePipe
+            }}</span>
+          </div>
+          <div class="flex mt-2 *:w-16 *:max-w-16 *:mr-1 *:flex *:justify-center *:items-center">
+            @for (item of selectedPokemon().types; track $index) {
+              <div
+                class="text-sm font-semibold py-1 px-2 rounded"
+                [ngClass]="item.type.name + '-chip'"
+              >
+                {{ item.type.name | pokemonNamePipe }}
+              </div>
+            }
+          </div>
+        </div>
+      </li>
+    </ul>
+  }
+  <mat-form-field class="mt-4">
+    <mat-label>Pokemon</mat-label>
+    <mat-select [formControl]="selectedPokemonControl" (selectionChange)="selected()">
+      @for (pokemon of pokemonList; track pokemon.name) {
+        <mat-option [value]="pokemon.name">{{ pokemon.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="mt-4">
+    <mat-label>Pokemon</mat-label>
+    <input matInput [formControl]="pokemonSearchControl" />
+  </mat-form-field>
+
+  <button matButton (click)="searchPokemon()">Buscar</button>
+</div>

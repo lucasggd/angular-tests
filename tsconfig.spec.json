@@ -3,9 +3,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/spec",
     "types": [
-      "vitest/globals"
+      "vitest/globals",
+      "jest",
+      "cypress",
+      "node"
     ]
   },
   "include": [
