@@ -1,0 +1,9 @@
+<div class="w-screen h-screen bg-gray-800 text-white flex justify-center items-center">
+  @for (o of obj; track $index) {
+    <ng-container
+      *ngTemplateOutlet="o.test.template; context: { $implicit: o.nome }"
+    ></ng-container>
+  }
+
+  <ng-content select="[contentTeste]"></ng-content>
+</div>

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
-import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
+import { Template2Component } from './template2/template2.component';
+import { Template3Component } from './template3/template3.component';
 
-export const routes: Routes = [{ path: '**', component: PokemonListComponent }];
+export const routes: Routes = [{ path: '**', component: Template3Component }];

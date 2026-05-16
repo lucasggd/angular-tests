@@ -66,4 +66,11 @@ describe('PokemonListComponent', () => {
     expect(serviceMock.getPokemonByName).toHaveBeenCalledTimes(1);
     expect(component.selectedPokemon()).toBe(getPokemonByNameMock);
   });
+
+  it('Should render pokemon-card', () => {
+    component.selectedPokemon.update(() => getPokemonByNameMock);
+    fixture.detectChanges();
+    const cardComponent = fixture.debugElement.query(By.css('app-pokemon-card'));
+    expect(cardComponent).toBeTruthy();
+  });
 });
