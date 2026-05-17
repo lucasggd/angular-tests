@@ -1,31 +1,44 @@
 <div class="content flex">
-  <nav #navbar>
-    <div class="nav--header">Logo</div>
-    <div class="nav--content">
-      <ul>
-        <li>
-          <a class="nav--item" (click)="expand(gengarSub)">Gengar</a>
-          <ul #gengarSub class="nav--subitems">
-            <div>
-              <li><a>Gastly</a></li>
-              <li><a>Haunter</a></li>
-              <li><a>Gengar</a></li>
-            </div>
-          </ul>
-        </li>
-        <li>
-          <a class="nav--item" (click)="expand(charizardSub)">Charizard</a>
-          <ul #charizardSub class="nav--subitems">
-            <div>
-              <li><a>Charmander</a></li>
-              <li><a>Charmeleon</a></li>
-              <li><a>Charizard</a></li>
-            </div>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div class="nav--footer">Footer</div>
-  </nav>
+  <div class="nav-content">
+    <nav #navbar>
+      <div class="nav--header">Logo</div>
+      <div class="nav--content">
+        <ul>
+          <li>
+            <a class="nav--item" (click)="expand(gengarSub)">Gengar</a>
+            <ul #gengarSub class="nav--subitems">
+              <div>
+                <li><a>Gastly</a></li>
+                <li><a>Haunter</a></li>
+                <li><a>Gengar</a></li>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a class="nav--item" (click)="expand(charizardSub)">Charizard</a>
+            <ul #charizardSub class="nav--subitems">
+              <div>
+                <li><a>Charmander</a></li>
+                <li><a>Charmeleon</a></li>
+                <li><a>Charizard</a></li>
+              </div>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="nav--footer">Footer</div>
+    </nav>
+  </div>
   <!-- <button class="bg-white" (click)="expandSide(navbar)">clica</button> -->
+  <div class="teste-grid">
+    <div class="w-full h-full bg-purple-800" (click)="expandSide(navbar)"></div>
+    <div class="w-full h-full bg-purple-800" (click)="expandSide(navbar)"></div>
+    <div class="w-full h-full bg-purple-800" (click)="expandSide(navbar)"></div>
+    <div class="w-full h-full bg-purple-800" (click)="expandSide(navbar)"></div>
+    <div class="w-full h-full bg-purple-800" (click)="expandSide(navbar)"></div>
+    <div class="w-full h-full bg-purple-800" (click)="expandSide(navbar)"></div>
+    <div class="w-full h-full bg-purple-800" (click)="expandSide(navbar)"></div>
+    <div class="w-full h-full bg-purple-800" (click)="expandSide(navbar)"></div>
+    <div class="w-full h-full bg-purple-800" (click)="expandSide(navbar)"></div>
+  </div>
 </div>
