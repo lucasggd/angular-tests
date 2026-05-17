@@ -1,0 +1,14 @@
+<div class="w-screen h-screen bg-gray-800 flex justify-center items-center">
+  <label>
+    <span class="label">control2</span>
+    <input [formControl]="control2" type="text" [placeholder]="'Place holder'" />
+    <span class="error">Campo obrigatorio*</span>
+  </label>
+
+  <cdk-input
+    class="mx-4"
+    [control]="control"
+    [label]="'Input customizado'"
+    [placeholder]="'Place holder'"
+  ></cdk-input>
+</div>

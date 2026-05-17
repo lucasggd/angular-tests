@@ -1,0 +1,5 @@
+<label>
+  <span class="label">{{ label }} {{ control.hasValidator(validators.required) ? '*' : `` }}</span>
+  <input [formControl]="control" type="text" [placeholder]="placeholder" />
+  <span class="error">Campo obrigatorio*</span>
+</label>

@@ -1,0 +1,70 @@
+input{
+    border: 1px solid #949494;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #fff;
+    font-family: var(--open-sans);
+    outline: none;
+    transition:border 200ms ease-in-out
+}
+
+input:focus {
+    border: 1px solid #9735aa;
+    transition:border 350ms ease-in-out
+}
+
+label{
+    color: #fff;
+    font-family: var(--open-sans);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+label > span.label{
+    position: absolute;
+    font-size: 16px;
+    left:16px;
+    top:16px;
+    transition: all 200ms;
+    font-family: var(--open-sans);
+}
+
+label:has(input:focus) > span.label, label:has(input:not(:placeholder-shown)) > span.label{
+    font-size: 12px;
+    left:16px;
+    top: 0;
+    color: #aaa;
+    transition: all 200ms;
+}
+
+input::placeholder {
+    opacity: 0;
+    transition: all 100ms;
+}
+
+label > input:focus::placeholder{
+    opacity: 1;
+    transition: opacity 200ms;
+}
+
+label span.error{
+    opacity: 0;
+    width: auto;
+    text-wrap: nowrap;
+    color: rgb(226, 55, 55);
+    font-family: var(--open-sans);
+    font-size: 14px;
+    margin: 8px;
+}
+
+label:has(input.ng-invalid.ng-touched) span.error{
+    opacity: 1;
+}
+
+label input.ng-invalid.ng-touched{
+    border: 1px solid rgb(226, 55, 55);
+}
+
+label input.ng-invalid.ng-touched::placeholder, label:has(input.ng-invalid.ng-touched) span.label{
+    color: rgb(226, 55, 55);
+}

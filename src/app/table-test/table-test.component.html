@@ -1,0 +1,23 @@
+<div class="w-screen h-screen bg-gray-800 flex justify-center items-center">
+  @if (data) {
+    <div class="w-1/2 h-1/2 overflow-auto flex">
+      <cdk-table [columns]="columns" [data]="data" class="w-full h-full">
+        <ng-container thead>
+          @for (item of columns; track $index) {
+            <th [ngClass]="{ 'sticky-column-right': item === `Ações` }">{{ item }}</th>
+          }
+        </ng-container>
+
+        <ng-container tbody>
+          @for (item of data.results; track $index) {
+            <tr>
+              @for (col of columns; track col) {
+                <td [ngClass]="{ 'sticky-column-right': col === `Ações` }">{{ item[col] }}</td>
+              }
+            </tr>
+          }
+        </ng-container>
+      </cdk-table>
+    </div>
+  }
+</div>
